@@ -65,8 +65,8 @@ while 1
     M = [1+p(1) p(3) p(5); p(2) 1+p(4) p(6); 0 0 1];
     
     % Stopping criterion
-%     norm(dp)
-    if norm(dp) < 0.001
+    norm(dp)
+    if norm(dp) < 0.05
         break;
     end    
 end
