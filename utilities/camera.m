@@ -1,3 +1,6 @@
+% Require additional package
+% https://www.mathworks.com/help/supportpkg/usbwebcams/ug/installing-the-webcams-support-package.html
+
 %% Set up camera
 webcamlist;
 cam = webcam;
