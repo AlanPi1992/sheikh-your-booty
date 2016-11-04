@@ -8,3 +8,10 @@ John's work until Nov 11
 	
 	-Make KLT deal with video better and less spastically
 
+Alan's work
+
+	-Make rendering such that transformation is projective instead of just affine
+
+Jeremy's work
+
+	-Improved version of LK, deal with speed and ability to keep up with fast moving Hiro

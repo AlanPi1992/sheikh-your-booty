@@ -71,8 +71,8 @@ for i = 1:1000
             step(p, camera);
             continue
         end
-        imshow(camera), hold on;
-        plot(newLoc(1,1), newLoc(1,2),'r'), hold off;
+        imshow(camera)
+        plot(newLoc(1,1), newLoc(1,2),'r');
         [trackingTrans, oldInLoc, newInLoc] = ...
             estimateGeometricTransform(...
             oldLoc,newLoc,'Similarity');
