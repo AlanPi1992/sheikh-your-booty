@@ -2,16 +2,16 @@
 CMU 16720 final project, Fall 2016
 
 
-John's work until Nov 11
+John's work until next time
 	
-	-Recognize template in video frame using custom SURF
-	
-	-Make KLT deal with video better and less spastically
+	-Use HW2 Brief or write SURF feature extractor to replace library call	
+	-Produce some prettier demos :)
 
 Alan's work
 
-	-Make rendering such that transformation is projective instead of just affine
+	-Replace the KLT library call w/ implementation
+
 
 Jeremy's work
 
-	-Improved version of LK, deal with speed and ability to keep up with fast moving Hiro
+	-Use Professor's code to implement another AR demo with rendering for comparison
