@@ -24,7 +24,8 @@ videoPlayer = vision.VideoPlayer('Position', [5 5 [frameSize(2), frameSize(1)]+5
 alpha = vision.AlphaBlender('Operation', 'Binary mask', 'MaskSource', 'Input port');
 
 % Read the image to be blended into vedio
-mickey = imread('emoji.png');
+mickey = imread('annonymous.jpg');
+% mickey = imread('emoji.png');
 % mickey = imread('baoman.png');
 if (size(mickey, 3) == 1)
     mickey = repmat(mickey, [1,1,3]);
