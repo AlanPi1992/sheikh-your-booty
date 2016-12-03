@@ -1,10 +1,15 @@
 %%
-v = VideoReader('~/Downloads/templateVid_480p.MOV');
+v = VideoReader('templateVid_480p.MOV');
 f = 0;
 frames_original = [];
+limit = 360;
+l = 0;
 while hasFrame(v)
-    frames_original = cat(3, frames_original, rgb2gray(readFrame(v)));
-    
+    l = l + 1;
+    if l > limit
+        break;
+    end
+    frames_original = cat(4, frames_original, readFrame(v));    
     f = f + 1;
     disp(f);
     whos frames_orginal
