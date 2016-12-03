@@ -1,8 +1,0 @@
-function [points] = j_detectSURFFeatures(gray)
-in
-
-
-
-
-
-end
