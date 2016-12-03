@@ -1,5 +1,5 @@
 % Written by John Ryan - johnryan@cmu.edu
-
+clearvars;
 
 ref = rgb2gray(imread('../data/hiro1.png'));
 %ref = imresize(ref, 0.1);
@@ -8,7 +8,7 @@ referencePoints = detectSURFFeatures(ref);
 referenceFeatures = extractFeatures(ref, referencePoints);
 
 
-%mickey = imresize(rgb2gray(imread('mickey.jpg')));
+mickey = rgb2gray(imread('mickey.jpg'));
 % load('../data/frames_480p_fps30.mat');
 % camera = frames(:,:,100);
 

@@ -1,6 +1,6 @@
 % Written by John Ryan - johnryan@cmu.edu
 clearvars;
-ref = rgb2gray(imread('hiro3.png'));
+ref = rgb2gray(imread('hiro2.png'));
 %ref = imresize(ref, 0.1);
 
 referencePoints = detectSURFFeatures(ref);
@@ -10,7 +10,7 @@ referenceFeatures = extractFeatures(ref, referencePoints);
 mickey = imresize(rgb2gray(imread('mickey1.png')),3);
 % load('../data/frames_480p_fps30.mat');
 % camera = frames(:,:,100);
-v = vision.VideoFileReader('clip1.mp4', ...
+v = vision.VideoFileReader('clip.mp4', ...
     'VideoOutputDataType', 'uint8');
 p = vision.VideoPlayer;
 
@@ -28,7 +28,7 @@ vidTrans = imwarp(mickey, affine2d(), ...
 mask = vidTrans>0;
 counter=0;
 lag = 1;
-for i = 1:300
+for i = 1:150
     camera = rgb2gray(step(v));
     if(~recognized)
         if(mod(counter,3)~=0)
@@ -36,7 +36,7 @@ for i = 1:300
             step(p, camera);
         end
         counter = counter+1;
-        cameraPoints = detectSURFFeatures(camera);
+        cameraPoints = j_detectSURFFeatures(camera);
         cameraFeatures = extractFeatures(camera, cameraPoints);
         
         idxPairs = matchFeatures(cameraFeatures, referenceFeatures);
