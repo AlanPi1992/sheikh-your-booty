@@ -19,8 +19,8 @@ imageBox(3,:) = [];
 if(isempty(warpHandle))
     % create new plot
     figure(1),imshow(uint8(image)); hold on;
-    plot(imageBox(1,:),imageBox(2,:),'color',[1,0.3,0.3],'linewidth',4);
-    warpHandle = plot(warpImageBox(1,:),warpImageBox(2,:),'color',[0.3,1,0.3],'linewidth',2);
+    %plot(imageBox(1,:),imageBox(2,:),'color',[1,0.3,0.3],'linewidth',4);
+    warpHandle = plot(warpImageBox(1,:),warpImageBox(2,:),'color',[0.3,0.3,1],'linewidth',2);
 else
     % just update the warped box
     set(warpHandle,'XData',warpImageBox(1,:));
