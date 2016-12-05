@@ -1,16 +1,13 @@
 %% read files
-imageAll{1} = double(frames(:,:,62));
-dx = 40;
-dy = 30;
-boxGTall{1} = [230 + dx,88 + dy,285 + dx,145 + dy];
+imageAll{1} = double(frames(:,:,2));
+boxGTall{1} = [230,88,285,145];
 % track one image
 image = imageAll{1};
 boxGT = boxGTall{1};
 
 %% set parameters
 params = setParams(imageAll,boxGT);
-params.ImW = 90;
-params.ImH = 90;
+
 %% generate a random warp
 while(true)
     pVec = genNoiseWarp(params);
