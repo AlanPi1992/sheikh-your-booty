@@ -1,24 +1,42 @@
-%load('../images/frames100.mat');
-boxGTall{1} = [230,88,285,145];
-boxGT = boxGTall{1};
-pVec = boxGT;
+boxGT = [230,88,285,145]; % frame 1
+image_prev = frames360(:,:,:,1);    
 
-for i = 1 : length(frames100)  
-    imageAll{1} = frames100(:,:,:,i);
-    params = setParams(imageAll,boxGT); 
+for i = 3 : length(frames360)  
+    image_cur = frames360(:,:,:,i);    
     
-    while(true)
-    pVec = genNoiseWarp(params);
-    % make sure perturbed box doesn't fall out of image
-    if(checkGoodPerturbedBox(params,pVec,image)) break; end
+    layerN = length(Rall);    
+    for l = 1:layerN
+        % crop out the warped frame
+        %=====================================
+        image = double(rgb2gray(image_cur));
+        pMtrx = warpVec2Mtrx(params,pVec);
+        % map to Im coordinate, perform warp, then map back to image coordinate
+        % forward warping the box --> inverse warping the image
+        transMtrx = params.Im2imageAffine*(pMtrx\params.image2ImAffine);
+        % apply warp to image
+        tform = projective2d(transMtrx');
+        imageWarp = imwarp(image,tform,'cubic','outputview',params.imref2d);
+        %=====================================
+        
+        feat = extractFeature(imageWarp,params);
+        featVec = feat(:);
+        % apply regression and try to warp back image
+        dpVec = Rall{l}*[featVec;1];
+        
+        % update warp
+        pVec = composeWarp(pVec,dpVec,params,true);
+        
+        % visualization
+        if(visualize)
+            warpHandle = visualizeWarp(image,pVec,params,warpHandle);        
+            drawnow;
+            if(params.visualizeTestPause) pause; end
+        end        
     end
     
-    assert(params.pDim == size(Rall{1},1),'warp dimension mismatch.....');
-    [pVecAll,~] = performRegression(params,image,pVec,Rall,true);
-    
-    %imshow(frames100(:,:,:,i));
     drawnow;
     pause;
     disp(i);            
     
 end
+

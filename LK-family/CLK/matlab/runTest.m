@@ -1,7 +1,5 @@
 %% read files
-%imageAll{1} = imread('../images/simonbaker.png');
 imageAll{1} = frames100(:,:,:,1);
-%boxGTall{1} = [220,100,460,340];
 boxGTall{1} = [230,88,285,145];
 % track one image
 image = imageAll{1};

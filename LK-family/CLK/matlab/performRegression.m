@@ -23,7 +23,7 @@ for l = 1:layerN
 	pVec = composeWarp(pVec,dpVec,params,true);
 	% visualization
     if(visualize)
-        warpHandle = visualizeWarp(image,pVec,params,warpHandle);
+        warpHandle = visualizeWarp(image,pVec,params,warpHandle);        
     	drawnow;
         if(params.visualizeTestPause) pause; end
     end
