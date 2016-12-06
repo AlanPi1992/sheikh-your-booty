@@ -9,7 +9,7 @@ while hasFrame(v)
     if l > limit
         break;
     end
-    frames_original = cat(4, frames_original, readFrame(v));    
+    frames_original = cat(4, frames_original, rgb2gray(readFrame(v)));    
     f = f + 1;
     disp(f);
     whos frames_orginal
