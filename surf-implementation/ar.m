@@ -1,6 +1,6 @@
 % Written by John Ryan - johnryan@cmu.edu
 clearvars;
-
+tic 
 ref = rgb2gray(imread('../data/hiro1.png'));
 %ref = imresize(ref, 0.1);
 
@@ -8,7 +8,7 @@ referencePoints = detectSURFFeatures(ref);
 referenceFeatures = extractFeatures(ref, referencePoints);
 
 
-mickey = rgb2gray(imread('mickey.jpg'));
+mickey = imresize(rgb2gray(imread('../data/square.png')),0.3);
 % load('../data/frames_480p_fps30.mat');
 % camera = frames(:,:,100);
 
@@ -27,7 +27,14 @@ camera = rgb2gray(step(v));
 outputView = imref2d(size(camera));
 counter=0;
 lag = 1;
-for i = 1:90
+
+
+for i = 1:123
+    if(i==122)
+        figure;
+        imshow(camera);
+        title('Frame 62');
+    end
     camera = rgb2gray(step(v));
     if(~recognized)
         if(mod(counter,3)~=0)
@@ -56,7 +63,7 @@ for i = 1:90
         matchedRefPts = referencePoints(idxPairs(:,2));  
         [refTrans, inlierRefPts, inlierCamPts] = ...
             estimateGeometricTransform(matchedRefPts, ...
-                matchedCameraPts, 'projective');
+                matchedCameraPts, 'affine');
         initialize(pointTracker,inlierCamPts.Location, camera);
          
         trackingTrans = refTrans;
@@ -76,7 +83,7 @@ for i = 1:90
        
         [trackingTrans, oldInLoc, newInLoc] = ...
             estimateGeometricTransform(...
-            oldLoc,newLoc,'projective');
+            oldLoc,newLoc,'affine');
         setPoints(pointTracker,newLoc);
         trackingTrans.T = refTrans.T * trackingTrans.T;
     end 
@@ -86,8 +93,9 @@ for i = 1:90
     mask = vidTrans>0;
     camera = step(alpha, camera, vidTrans, mask);
 %     
-    step(p, camera);
+   % step(p, camera);
 end
+toc
 % figure;
 % imshow(camera), hold on;
 % plot(cameraPoints);

@@ -36,7 +36,7 @@ for i = 1:150
             step(p, camera);
         end
         counter = counter+1;
-        cameraPoints = j_detectSURFFeatures(camera);
+        cameraPoints = detectSURFFeatures(camera);
         cameraFeatures = extractFeatures(camera, cameraPoints);
         
         idxPairs = matchFeatures(cameraFeatures, referenceFeatures);

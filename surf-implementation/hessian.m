@@ -31,7 +31,7 @@ function [level] = hessian(filter_size, I)
             %y = j - (filter_size-1)/2 - 1;
             base_x = x+offset-1;
             base_y = y+offset-1;
-            dxy = 
+%             dxy = 
             level(i,j) = (dxx*dyy) /(filter_size^4);%*dyy;
         end
     end

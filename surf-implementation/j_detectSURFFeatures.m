@@ -2,7 +2,7 @@ function [points] = j_detectSURFFeatures(gray)
     
     Integral_Image = integralImage(gray);
     
-    octaves = [1 2 3];
+    octaves = [1];% 2 3];
     filter_sizes = [ 9, 15, 21, 27 ;...
                     15, 27, 39, 51 ;...
                     27, 51, 75, 99 ];%, { 51, 99, 147, 195 }
